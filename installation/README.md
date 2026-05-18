@@ -122,6 +122,47 @@ If you are to use `installation/settings.json`, consider disabling bypassPermiss
 
 (Especially, when you are working on shared/critical systems) 
 
+## 4. Recommended `statusline`: oh-my-claudecode (OMC)
+
+Rich statusline showing rate-limit usage, thinking mode, session info, context usage, and tool-call counts.
+
+**Example output:**
+
+```
+[OMC#4.14.0] | 5h:17%(3h22m) wk:33%(2d13h) sn:0%(2d13h) extra:85%($211.80/$250.00) | thinking | session:0m | ralph:1/100 | ultrawork+ralph | ctx:4% | 🔧6
+```
+
+### 4-1. Required files to set `statusline`
+
+All paths are under `~/.claude/`.
+
+| Path | Role |
+|------|------|
+| `~/.claude/settings.json` | Declares `statusLine.command` and enables the OMC plugin/marketplace. ⚠️  Also contains personal settings (theme, model, permissions) — if the target server already has its own, **merge only the `statusLine` block** rather than overwriting. |
+| `~/.claude/.omc/hud-config.json` | HUD element config — decides which segments render (rateLimits, thinking, sessionHealth, ralph, activeSkills, contextBar, callCounts). Overrides the default "minimal" preset. |
+| `~/.claude/hud/omc-hud.mjs` | HUD entrypoint script. Resolves which installed OMC plugin version to load. |
+| `~/.claude/hud/omc-hud-with-effort.sh` | Bash wrapper that appends `\| effort:<level>` via `jq`. Must be executable (`chmod +x`). |
+| `~/.claude/hud/lib/config-dir.mjs` | Helper module imported by `omc-hud.mjs` to resolve `CLAUDE_CONFIG_DIR`. |
+
+### 4-2. Prerequisites (install on each server, respectively)
+
+- **Node.js** — runs `omc-hud.mjs`
+- **jq** — wrapper uses it to extract `.effort.level`; without jq the effort segment is silently skipped
+- **OMC plugin** at `~/.claude/plugins/cache/omc/oh-my-claudecode/<version>/` — either replicate the plugin tree, or run `/oh-my-claudecode:omc-setup` once on each server
+
+### 4-3. Optional files to control `statusline` (keeps behavior fully identical)
+
+| Path | Role |
+|------|------|
+| `~/.claude/settings.local.json` | Per-host permission allowlist (Bash/Skill auto-allow). |
+| `~/.claude/.omc-config.json` | OMC runtime config (default execution mode, team config, task tool choice). |
+| `~/.claude/CLAUDE.md` | Global OMC operating principles loaded into every session. |
+
+### 4-4. Do NOT copy these files between servers
+
+- `~/.claude/scripts/ensure-omc-hud-minimal.mjs` — orphan script that resets HUD config back to "minimal" if a `SessionStart` hook re-fires it.
+- `~/.claude/statusline.sh` — older custom statusline script, no longer wired into anything via `settings.json`.
+
 ---
 
 # References
