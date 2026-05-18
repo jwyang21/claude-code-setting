@@ -1,3 +1,0 @@
-[submodule "claude-code-slack"]
-	path = claude-code-slack
-	url = https://github.com/jwyang21/claude-code-slack.git
