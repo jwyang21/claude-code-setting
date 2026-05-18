@@ -1,5 +1,4 @@
 .DS_Store
-.gitmodules
 rules/use-advisor-persona.md
 rules/directory-structure.md
 rules/huggingface-model-dataset-location.md
