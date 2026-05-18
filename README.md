@@ -18,7 +18,7 @@ This repo is a personal reference. Feel free to adapt anything here for your own
 
 ## Quick Start
 
-### Cloning
+### Cloning this repository
 
 This repository contains [`claude-code-slack`](https://github.com/jwyang21/claude-code-slack) as a Git submodule. 
 
