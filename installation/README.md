@@ -113,6 +113,15 @@ You can set global configurations via editing a file `~/.claude/settings.json`.
 For example, I am using a customized global setting (refer to `installation/settings.json` as an example).
 - This file is just an example. You can edit the setting in whichever way you want.
 
+## 3-1. Security alert
+The configuration in `installation/settings.json` enables bypassPermissions + skipDangerousModePermissionPrompt. 
+
+All tool calls (Bash/Write/Edit) run WITHOUT confirmation, including destructive ones (e.g., `rm`, `git push` `--force`, etc). 
+
+If you are to use `installation/settings.json`, consider disabling bypassPermissions and skipDangerousModePermissionPrompt by removing `permissions.defaultMode` and `skipDangerousModePermissionPrompt` from the file.
+
+(Especially, when you are working on shared/critical systems) 
+
 ---
 
 # References

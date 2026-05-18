@@ -1,7 +1,11 @@
+// Refer to README.md for additional explanation on this file.
 {
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
     "TZ": "Asia/Seoul"
+  },
+  "permissions": {
+    "defaultMode": "bypassPermissions"
   },
   "model": "opus[1m]",
   "statusLine": {
@@ -19,5 +23,6 @@
       }
     }
   },
+  "skipDangerousModePermissionPrompt": true,
   "theme": "dark-ansi"
 }
