@@ -18,14 +18,19 @@ This repo is a personal reference. Feel free to adapt anything here for your own
 
 ## Quick Start
 
-### Clone with submodules
-The `claude-code-slack/` directory is a submodule, so clone recursively:
+### Cloning
+
+This repository contains [`claude-code-slack`](https://github.com/jwyang21/claude-code-slack) as a Git submodule. 
+
+To clone both repos at once, use the `--recurse-submodules` flag:
+
 ```bash
 git clone --recurse-submodules https://github.com/jwyang21/claude-code-setting.git
 ```
-If you already cloned without `--recurse-submodules`:
+
+If you already cloned without the flag, initialize the submodule afterward:
+
 ```bash
-cd claude-code-setting
 git submodule update --init --recursive
 ```
 
